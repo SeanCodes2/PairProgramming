@@ -14,12 +14,12 @@
             do
             {
 
-                Console.WriteLine("Please enter your name");
+                Console.WriteLine("Please enter students name:");
                 string userInput = Console.ReadLine();
 
                 names.Add(userInput); //add to the list above
 
-                Console.WriteLine("Press Esc or Y to add another name");
+                Console.WriteLine("Press Esc or any key to add another name");
                 ConsoleKey key = Console.ReadKey(true).Key;
 
                 if (key == ConsoleKey.Escape)
@@ -29,30 +29,55 @@
 
             } while (name);
 
+            Console.WriteLine("");
+            Console.WriteLine("");
+
             foreach (var item in names)
             {
                 Console.WriteLine(item);
             }
-
+            Console.WriteLine("");
+            Console.WriteLine("");
 
             //Divide into two groups
             //Iterate through two groups
             //Random numbers
 
+            int groupNum = 1;
+            Random rand = new Random ();
+
+            //Printing names into groups 
             while (names.Count() > 0)
             {
                 if (names.Count() % 2 == 1)
                 {
-                    Console.WriteLine($"{names[0]}, {names[1]}, {names[2]}"); 
+                    
+                    string name1 = names[rand.Next(0, names.Count())];
+                    names.Remove(name1);
+                    string name2 = names[rand.Next(0, names.Count())];
+                    names.Remove(name2);
+                    string name3 = names[rand.Next(0, names.Count())];
+                    names.Remove(name3);
 
-                    names.RemoveRange(0, 3); // kicks the names out the list
+                    Console.WriteLine($"Group{groupNum} - {name1}, {name2}, {name3}"); 
+
+                    /*names.RemoveRange(0, 3);*/ // kicks the names out the list
+
+                    groupNum++;
                 }
 
                 else
                 {
-                    Console.WriteLine($"{names[0]}, {names[1]} "); //names divided into list
+                    string name1 = names[rand.Next(0, names.Count())];
+                    names.Remove(name1);
+                    string name2 = names[rand.Next(0, names.Count())];
+                    names.Remove(name2);
 
-                    names.RemoveRange(0, 2);
+                    Console.WriteLine($"Group{groupNum} - {name1}, {name2} "); //names divided into list
+
+                    //names.RemoveRange(0, 2);
+
+                    groupNum++;
                 }
             }
             
